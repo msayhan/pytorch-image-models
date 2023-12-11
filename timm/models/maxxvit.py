@@ -1705,6 +1705,36 @@ model_cfgs = dict(
         stem_width=(48, 96),
         **_next_cfg(),
     ),
+    # MSA added missing configs
+    maxxvit_rmlp_base_rw=MaxxVitCfg(
+        embed_dim=(96, 192, 384, 768),
+        depths=(2, 2, 6, 14),
+        block_type=('M',) * 4,
+        stem_width=(48, 96),
+        **_next_cfg(),
+    ),
+    maxxvit_rmlp_large_rw=MaxxVitCfg(
+        embed_dim=(128, 256, 512, 1024),
+        depths=(2, 2, 6, 14),
+        block_type=('M',) * 4,
+        stem_width=(64, 128),
+        **_next_cfg(),
+    ),    
+    maxxvit_rmlp_xlarge_rw=MaxxVitCfg(
+        embed_dim=(192, 384, 768, 1536),
+        depths=(2, 2, 6, 14),
+        block_type=('M',) * 4,
+        stem_width=(96, 192),
+        **_next_cfg(),
+    ),
+    maxxvit_rmlp_xxlarge_rw=MaxxVitCfg(
+        embed_dim=(256, 512, 1024, 2048),
+        depths=(2, 2, 8, 16),
+        block_type=('M',) * 4,
+        stem_width=(128, 256),
+        **_next_cfg(),
+    ),
+    ###
 
     maxxvitv2_nano_rw=MaxxVitCfg(
         embed_dim=(96, 192, 384, 768),
@@ -1967,6 +1997,14 @@ default_cfgs = generate_default_cfgs({
         hf_hub_id='timm/',
         url='https://github.com/rwightman/pytorch-image-models/releases/download/v0.1-weights-maxx/maxxvit_rmlp_small_rw_256_sw-37e217ff.pth',
         input_size=(3, 256, 256), pool_size=(8, 8)),
+    
+    # MSA added missing configs
+    'maxxvit_rmlp_tiny_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_small_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_base_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_large_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_xlarge_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_xxlarge_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
 
     # timm MaxxViT-V2 configs (ConvNeXt conv blocks mixed with MaxVit transformer blocks, more width, no block attn)
     'maxxvitv2_nano_rw_256.sw_in1k': _cfg(
@@ -2234,6 +2272,34 @@ def maxxvit_rmlp_tiny_rw_256(pretrained=False, **kwargs) -> MaxxVit:
 @register_model
 def maxxvit_rmlp_small_rw_256(pretrained=False, **kwargs) -> MaxxVit:
     return _create_maxxvit('maxxvit_rmlp_small_rw_256', pretrained=pretrained, **kwargs)
+
+
+
+#### MSA added missing configs
+@register_model
+def maxxvit_rmlp_tiny_rw_224(pretrained=False, **kwargs) -> MaxxVit:
+    return _create_maxxvit('maxxvit_rmlp_tiny_rw_224', pretrained=pretrained, **kwargs)
+
+@register_model
+def maxxvit_rmlp_small_rw_224(pretrained=False, **kwargs) -> MaxxVit:
+    return _create_maxxvit('maxxvit_rmlp_small_rw_224', pretrained=pretrained, **kwargs)
+
+@register_model
+def maxxvit_rmlp_base_rw_224(pretrained=False, **kwargs) -> MaxxVit:
+    return _create_maxxvit('maxxvit_rmlp_base_rw_224', pretrained=pretrained, **kwargs)
+
+@register_model
+def maxxvit_rmlp_large_rw_224(pretrained=False, **kwargs) -> MaxxVit:
+    return _create_maxxvit('maxxvit_rmlp_large_rw_224', pretrained=pretrained, **kwargs)
+
+@register_model
+def maxxvit_rmlp_xlarge_rw_224(pretrained=False, **kwargs) -> MaxxVit:
+    return _create_maxxvit('maxxvit_rmlp_xlarge_rw_224', pretrained=pretrained, **kwargs)
+
+@register_model
+def maxxvit_rmlp_xxlarge_rw_224(pretrained=False, **kwargs) -> MaxxVit:
+    return _create_maxxvit('maxxvit_rmlp_xxlarge_rw_224', pretrained=pretrained, **kwargs)
+#### 
 
 
 @register_model
