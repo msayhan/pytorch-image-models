@@ -44,7 +44,7 @@ import torch
 from torch import nn
 from torch.jit import Final
 
-from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
+from timm.data import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD, IMAGENET_INCEPTION_MEAN, IMAGENET_INCEPTION_STD
 from timm.layers import Mlp, ConvMlp, DropPath, LayerNorm, ClassifierHead, NormMlpClassifierHead
 from timm.layers import create_attn, get_act_layer, get_norm_layer, get_norm_act_layer, create_conv2d, create_pool2d
 from timm.layers import trunc_normal_tf_, to_2tuple, extend_tuple, make_divisible, _assert
@@ -1999,12 +1999,12 @@ default_cfgs = generate_default_cfgs({
         input_size=(3, 256, 256), pool_size=(8, 8)),
     
     # MSA added missing configs
-    'maxxvit_rmlp_tiny_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
-    'maxxvit_rmlp_small_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
-    'maxxvit_rmlp_base_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
-    'maxxvit_rmlp_large_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
-    'maxxvit_rmlp_xlarge_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
-    'maxxvit_rmlp_xxlarge_rw_224': _cfg(url='', input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_tiny_rw_224': _cfg(url='', mean=IMAGENET_INCEPTION_MEAN, std=IMAGENET_INCEPTION_STD, input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_small_rw_224': _cfg(url='', mean=IMAGENET_INCEPTION_MEAN, std=IMAGENET_INCEPTION_STD, input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_base_rw_224': _cfg(url='', mean=IMAGENET_INCEPTION_MEAN, std=IMAGENET_INCEPTION_STD, input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_large_rw_224': _cfg(url='', mean=IMAGENET_INCEPTION_MEAN, std=IMAGENET_INCEPTION_STD, input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_xlarge_rw_224': _cfg(url='', mean=IMAGENET_INCEPTION_MEAN, std=IMAGENET_INCEPTION_STD, input_size=(3, 224, 224), pool_size=(7, 7)),
+    'maxxvit_rmlp_xxlarge_rw_224': _cfg(url='', mean=IMAGENET_INCEPTION_MEAN, std=IMAGENET_INCEPTION_STD, input_size=(3, 224, 224), pool_size=(7, 7)),
 
     # timm MaxxViT-V2 configs (ConvNeXt conv blocks mixed with MaxVit transformer blocks, more width, no block attn)
     'maxxvitv2_nano_rw_256.sw_in1k': _cfg(
